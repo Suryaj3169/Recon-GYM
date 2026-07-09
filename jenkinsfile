@@ -1,0 +1,29 @@
+pipeline{
+     agent any
+       stages{
+
+         stage('Git Clone'){
+             steps{
+                 git branch: 'main', url: 'https://github.com/Suryaj3169/Recon-GYM.git'
+             }
+         }
+         stage('Docker Image Build'){
+             steps{
+                 sh 'docker build -t gym-pro .'
+             }
+         }
+         stage ('Docker container run'){
+             steps{
+                 sh 'docker run -d -p 5000:5000 gym-pro'
+             }
+         }
+
+
+
+       }
+
+
+
+
+
+}
