@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerFit Gym</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#111;
+    color:#fff;
+}
+
+header{
+    background:#000;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:30px;
+    color:#ff4500;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff4500;
+}
+
+.hero{
+    height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1600");
+    background-size:cover;
+    background-position:center;
+}
+
+.hero h1{
+    font-size:60px;
+}
+
+.hero p{
+    margin:20px 0;
+    font-size:20px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#ff4500;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+section{
+    padding:70px 10%;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#ff4500;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#222;
+    padding:25px;
+    text-align:center;
+    border-radius:10px;
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+.price{
+    font-size:30px;
+    color:#ff4500;
+    margin:15px 0;
+}
+
+.contact{
+    text-align:center;
+}
+
+input,textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+}
+
+button{
+    padding:12px 30px;
+    border:none;
+    background:#ff4500;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+footer{
+    background:#000;
+    text-align:center;
+    padding:20px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<div class="logo">PowerFit Gym</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#plans">Plans</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>Train Hard<br>Stay Strong</h1>
+<p>Your Fitness Journey Starts Today.</p>
+<a href="#plans" class="btn">Join Now</a>
+</div>
+</section>
+
+<section id="about">
+<h2>About Us</h2>
+
+<p style="text-align:center;max-width:800px;margin:auto;">
+PowerFit Gym offers world-class fitness equipment, experienced trainers,
+group fitness classes, and personalized workout plans to help you achieve
+your fitness goals.
+</p>
+
+</section>
+
+<section id="plans">
+
+<h2>Membership Plans</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Basic</h3>
+<div class="price">$19/month</div>
+<p>Gym Access</p>
+<p>Locker Facility</p>
+<p>Free Wi-Fi</p>
+</div>
+
+<div class="card">
+<h3>Standard</h3>
+<div class="price">$39/month</div>
+<p>Everything in Basic</p>
+<p>Group Classes</p>
+<p>Diet Guidance</p>
+</div>
+
+<div class="card">
+<h3>Premium</h3>
+<div class="price">$59/month</div>
+<p>Personal Trainer</p>
+<p>Nutrition Plan</p>
+<p>24/7 Access</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Why Choose Us?</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Modern Equipment</h3>
+<p>Latest machines for strength and cardio training.</p>
+</div>
+
+<div class="card">
+<h3>Expert Trainers</h3>
+<p>Certified fitness professionals to guide you.</p>
+</div>
+
+<div class="card">
+<h3>Healthy Lifestyle</h3>
+<p>Customized workout and nutrition plans.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<div class="contact">
+
+<form>
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Your Email" required>
+
+<textarea rows="5" placeholder="Your Message"></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 PowerFit Gym | All Rights Reserved</p>
+
+</footer>
+
+</body>
+</html>
