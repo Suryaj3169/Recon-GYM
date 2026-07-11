@@ -14,7 +14,7 @@ pipeline{
          }
          stage ('Docker container run'){
              steps{
-                 sh 'docker run -d -p 5000:5000 gym-pro'
+                 sh 'docker run -d -p 80:80 gym-pro'
              }
          }
 }
