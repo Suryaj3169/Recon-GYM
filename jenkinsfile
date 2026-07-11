@@ -17,6 +17,11 @@ pipeline{
                  sh 'docker run -d -p 80:80 gym-pro'
              }
          }
+
+         stage('k8s Deployment'){
+             steps{
+                sh 'kubectl apply -f Deployment.yml'
+             }
 }
 
 }
