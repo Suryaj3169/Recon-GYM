@@ -1,27 +1,35 @@
-pipeline{
-     agent any
-       stages{
+pipeline {
+    agent any
 
-         stage('Git Clone'){
-             steps{
-                 git branch: 'main', url: 'https://github.com/Suryaj3169/Recon-GYM.git'
-             }
-         }
-         stage('Docker Image Build'){
-             steps{
-                 sh 'docker build -t gym-pro .'
-             }
-         }
-         stage ('Docker container run'){
-             steps{
-                 sh 'docker run -d -p 80:80 gym-pro'
-             }
-         }
+    stages {
 
-         stage('k8s Deployment'){
-             steps{
+        stage('Git Clone') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Suryaj3169/Recon-GYM.git'
+            }
+        }
+
+        stage('Docker Image Build') {
+            steps {
+                sh 'docker build -t gym-pro:latest .'
+            }
+        }
+
+        stage('K8s Deployment') {
+            steps {
                 sh 'kubectl apply -f Deployment.yml'
-             }
-}
+            }
+        }
 
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    kubectl get deployments
+                    kubectl get pods
+                    kubectl get svc
+                '''
+            }
+        }
+    }
 }

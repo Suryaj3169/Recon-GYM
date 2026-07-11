@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: rhynogymappcontainer
-          image: rynogym:latest
+          image: gym-pro:latest
           imagePullPolicy: always
 
           ports:
