@@ -23,7 +23,7 @@ spec:
       containers:
         - name: rhynogymappcontainer
           image: rynogym:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: always
 
           ports:
             - containerPort: 80
