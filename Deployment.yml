@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rhynogymappdeployment
+
+spec:
+  replicas: 2
+
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app: rhynogymapp
+
+  template:
+    metadata:
+      labels:
+        app: rhynogymapp
+
+    spec:
+      containers:
+        - name: rhynogymappcontainer
+          image: rynogym:latest
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rhynogymappsvc
+
+spec:
+  type: LoadBalancer
+
+  selector:
+    app: rhynogymapp
+
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
