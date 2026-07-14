@@ -23,7 +23,7 @@ spec:
       containers:
         - name: gym-pro-container
           image: gym-pro:latest
-          imagePullPolicy: always
+          imagePullPolicy: IfNotPresent
 
           ports:
             - containerPort: 80
