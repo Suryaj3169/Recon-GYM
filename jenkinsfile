@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE = 'suryaj3169/gym-pro'
+        DOCKER_TAG = 'latest'
+    }
+
     stages {
 
         stage('Git Clone') {
@@ -12,19 +17,51 @@ pipeline {
 
         stage('Docker Image Build') {
             steps {
-                sh 'docker build -t gym-pro:latest .'
+                sh '''
+                    docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+                '''
+            }
+        }
+
+        stage('Docker Hub Login') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login \
+                        -u "$DOCKER_USERNAME" \
+                        --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Docker Image Push') {
+            steps {
+                sh '''
+                    docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                '''
             }
         }
 
         stage('K8s Deployment') {
             steps {
-                sh 'kubectl apply -f Deployment.yml'
+                sh '''
+                    kubectl apply -f Deployment.yml
+                    kubectl rollout restart deployment gym-pro-deployment
+                '''
             }
         }
 
         stage('Verify Deployment') {
             steps {
                 sh '''
+                    kubectl rollout status deployment/gym-pro-deployment --timeout=120s
                     kubectl get deployments
                     kubectl get pods
                     kubectl get svc
@@ -32,4 +69,19 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            echo 'Deployment Successful!'
+        }
+
+        failure {
+            echo 'Pipeline Failed!'
+        }
+
+        always {
+            sh 'docker logout || true'
+        }
+    }
 }
+```
