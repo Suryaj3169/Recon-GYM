@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rhynogymappdeployment
+  name: gym-pro-deployment
 
 spec:
   replicas: 2
@@ -12,16 +12,16 @@ spec:
 
   selector:
     matchLabels:
-      app: rhynogymapp
+      app: gym-pro
 
   template:
     metadata:
       labels:
-        app: rhynogymapp
+        app: gym-pro
 
     spec:
       containers:
-        - name: rhynogymappcontainer
+        - name: gym-pro-container
           image: gym-pro:latest
           imagePullPolicy: always
 
@@ -32,13 +32,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rhynogymappsvc
+  name: gym-pro
 
 spec:
   type: LoadBalancer
 
   selector:
-    app: rhynogymapp
+    app: gym-pro
 
   ports:
     - protocol: TCP
