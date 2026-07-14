@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: gym-pro-container
-          image: gym-pro:latest
+          image: suryaj3169/gym-pro:latest
           imagePullPolicy: IfNotPresent
 
           ports:
