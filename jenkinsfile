@@ -53,7 +53,7 @@ pipeline {
             steps {
                 sh '''
                     kubectl apply -f Deployment.yml
-                    kubectl rollout restart deployment gym-pro-deployment
+                    kubectl rollout restart deployment gym-pro
                 '''
             }
         }
@@ -61,7 +61,7 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 sh '''
-                    kubectl rollout status deployment/gym-pro-deployment --timeout=120s
+                    kubectl rollout status deployment/gym-pro --timeout=120s
                     kubectl get deployments
                     kubectl get pods
                     kubectl get svc
