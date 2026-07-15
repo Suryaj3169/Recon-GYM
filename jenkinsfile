@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'gym-pro'
+        DOCKER_IMAGE = 'suryas1994/gym-pro'
         DOCKER_TAG = 'latest'
     }
 
